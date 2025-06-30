@@ -6,7 +6,7 @@ using ROS2;
 
 namespace ROS2
 {
-    public class StateControl: MonoBehaviour
+    public class StateControl : MonoBehaviour
     {
         private ROS2UnityComponent ros2Unity;
         private ROS2Node ros2Node;
@@ -54,10 +54,29 @@ namespace ROS2
             }
         }
 
-        public void On_click()
+        public void OnClickConfigure()
         {
             StartCoroutine(PeriodicAsyncCall(1));
-            
+        }
+
+        public void OnClickActivate()
+        {
+            StartCoroutine(PeriodicAsyncCall(3));
+        }
+
+        public void OnClickDeactivate()
+        {
+            StartCoroutine(PeriodicAsyncCall(3));
+        }
+
+        public void OnClickCleanup()
+        {
+            StartCoroutine(PeriodicAsyncCall(3));
+        }
+
+        public void OnClickShutdown()
+        {
+            StartCoroutine(PeriodicAsyncCall(5));
         }
     }
 }

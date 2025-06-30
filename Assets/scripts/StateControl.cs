@@ -24,7 +24,7 @@ namespace ROS2
                 {
                     ros2Node = ros2Unity.CreateNode("status_controler");
                     StateClient = ros2Node.CreateClient<lifecycle_msgs.srv.ChangeState_Request, lifecycle_msgs.srv.ChangeState_Response>(
-                        "joy_vel_converter/change_state"
+                        "/joy_vel_converter/change_state"
                     );
                     GetStateClient = ros2Node.CreateClient<lifecycle_msgs.srv.GetAvailableStates_Request, lifecycle_msgs.srv.GetAvailableStates_Response>(
                         "joy_vel_converter/get_available_states"
@@ -50,7 +50,7 @@ namespace ROS2
                 }
 
                 lifecycle_msgs.srv.ChangeState_Request request = new lifecycle_msgs.srv.ChangeState_Request();
-                request.Transition.Id = 1;
+                request.Transition.Id = (byte)state;
 
                 asyncTask = StateClient.CallAsync(request);
 
@@ -75,17 +75,17 @@ namespace ROS2
 
         public void OnClickDeactivate()
         {
-            StartCoroutine(PeriodicAsyncCall(3));
+            StartCoroutine(PeriodicAsyncCall(4));
         }
 
         public void OnClickCleanup()
         {
-            StartCoroutine(PeriodicAsyncCall(3));
+            StartCoroutine(PeriodicAsyncCall(2));
         }
 
         public void OnClickShutdown()
         {
-            StartCoroutine(PeriodicAsyncCall(5));
+            StartCoroutine(PeriodicAsyncCall(6));
         }
     }
 }

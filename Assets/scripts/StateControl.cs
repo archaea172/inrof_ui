@@ -11,7 +11,9 @@ namespace ROS2
         private ROS2UnityComponent ros2Unity;
         private ROS2Node ros2Node;
         private IClient<lifecycle_msgs.srv.ChangeState_Request, lifecycle_msgs.srv.ChangeState_Response> StateClient;
+        private IClient<lifecycle_msgs.srv.GetAvailableStates_Request, lifecycle_msgs.srv.GetAvailableStates_Response> GetStateClient;
         private Task<lifecycle_msgs.srv.ChangeState_Response> asyncTask;
+        private Task<lifecycle_msgs.srv.GetAvailableStates_Response> asyncTaskGet;
         // Start is called before the first frame update
         void Start()
         {
@@ -23,6 +25,9 @@ namespace ROS2
                     ros2Node = ros2Unity.CreateNode("status_controler");
                     StateClient = ros2Node.CreateClient<lifecycle_msgs.srv.ChangeState_Request, lifecycle_msgs.srv.ChangeState_Response>(
                         "joy_vel_converter/change_state"
+                    );
+                    GetStateClient = ros2Node.CreateClient<lifecycle_msgs.srv.GetAvailableStates_Request, lifecycle_msgs.srv.GetAvailableStates_Response>(
+                        "joy_vel_converter/get_available_states"
                     );
                 }
             }
@@ -48,10 +53,14 @@ namespace ROS2
                 request.Transition.Id = 1;
 
                 asyncTask = StateClient.CallAsync(request);
-                asyncTask.ContinueWith((task) => { Debug.Log(task.Result.Success); });
 
                 yield return new WaitForSecondsRealtime(1);
             }
+        }
+
+        private bool CheckState()
+        {
+            return true;
         }
 
         public void OnClickConfigure()

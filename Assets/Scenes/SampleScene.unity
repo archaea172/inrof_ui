@@ -316,6 +316,7 @@ GameObject:
   - component: {fileID: 1025899046}
   - component: {fileID: 1025899048}
   - component: {fileID: 1025899047}
+  - component: {fileID: 1025899049}
   m_Layer: 5
   m_Name: NavUi
   m_TagString: Untagged
@@ -381,6 +382,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025899045}
   m_CullTransparentMesh: 1
+--- !u!114 &1025899049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025899045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae0aff9acb0574cbb9a8ed83f2d73b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NavUi: {fileID: 1025899045}
+  picture: {fileID: 1134457792}
 --- !u!1 &1134457792
 GameObject:
   m_ObjectHideFlags: 0
